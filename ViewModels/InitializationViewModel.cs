@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Forms;
 
 namespace Entering.ViewModels
@@ -54,7 +50,7 @@ namespace Entering.ViewModels
                 }
             }
             return CallNextHookEx(m_hHook, nCode, wParam, lParam);
-        
+
         }
         [StructLayout(LayoutKind.Sequential)]
         private struct KeyboardHookStruct
@@ -70,10 +66,10 @@ namespace Entering.ViewModels
 
         public void SetHook()
         {
-                m_callback = LowLevelKeyboardHookProc;
-                m_hHook = SetWindowsHookEx(WH_KEYBOARD_LL,
-                    m_callback,
-                    GetModuleHandle(IntPtr.Zero), 0);
+            m_callback = LowLevelKeyboardHookProc;
+            m_hHook = SetWindowsHookEx(WH_KEYBOARD_LL,
+                m_callback,
+                GetModuleHandle(IntPtr.Zero), 0);
         }
         public void Unhook()
         {
@@ -142,7 +138,7 @@ namespace Entering.ViewModels
                 }
                 else
                 {
-                    answers[i] = answers[i].Substring(index, answers[i].Length-index);
+                    answers[i] = answers[i].Substring(index, answers[i].Length - index);
                     answers[i] = answers[i].Trim();
                 }
             }
@@ -175,7 +171,7 @@ namespace Entering.ViewModels
                 System.Windows.Clipboard.SetText(answers[i]);
                 SendKeys.SendWait("(^){v}");
                 Task.Delay(500);
-                SendKeys.SendWait("{ENTER}");
+                SendKeys.SendWait("{TAB}");
                 await delayTask;
             }
             _work = false;
