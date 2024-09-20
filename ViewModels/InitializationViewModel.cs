@@ -173,7 +173,7 @@ namespace Entering.ViewModels
             {
                 var delayTask = Task.Delay(500);
                 System.Windows.Clipboard.SetText(answers[i]);
-                SendKeys.SendWait("^v");
+                SendKeys.SendWait("(^){v}");
                 Task.Delay(500);
                 SendKeys.SendWait("{ENTER}");
                 await delayTask;
